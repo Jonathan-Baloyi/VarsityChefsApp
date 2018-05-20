@@ -2,9 +2,16 @@
 
 @import '~material-design-icons/iconfont/material-icons.css';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-deeppurple-amber.css .m {
+.m {
     margin-top: 5%;
-    margin: 10% 0% 0% 10%;
+    margin: auto;
+}
+
+.c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
 }
 
 .bg {

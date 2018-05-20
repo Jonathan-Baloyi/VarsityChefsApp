@@ -36,6 +36,8 @@ import { RecipeManagementComponent } from './recipe-management/recipe-management
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ApplicationComponent } from './application-management/application/application.component';
+import { ApplicationService } from '../services/application.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -64,6 +66,7 @@ import { ApplicationComponent } from './application-management/application/appli
     MatTabsModule,
   ],
   providers: [
+    ApplicationService,
     MatIconRegistry,
     MatError,
     MatChipInput,
@@ -74,7 +77,8 @@ import { ApplicationComponent } from './application-management/application/appli
   RecipeManagementComponent,
   AboutUsComponent,
   ContactUsComponent,
-  ApplicationComponent],
+  ApplicationComponent,
+  LoginComponent],
 
   exports: [CommonModule,
     FormsModule,

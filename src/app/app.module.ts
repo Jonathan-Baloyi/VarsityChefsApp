@@ -32,6 +32,7 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration } from './api-configuration';
 import { VarsityChefsModule } from './components/varsity-chefs.module';
+import { ApplicationService } from './services';
 
 
 @NgModule({
@@ -45,7 +46,9 @@ import { VarsityChefsModule } from './components/varsity-chefs.module';
     AppRoutingModule,
     VarsityChefsModule
   ],
-  providers: [ApiConfiguration],
+  providers: [ApiConfiguration,
+    ApplicationService
+  ],
   bootstrap: [AppComponent],
   exports: [
     AppRoutingModule,

@@ -5,14 +5,16 @@ import { RecipeManagementComponent } from './components/recipe-management/recipe
 import { ApplicationComponent } from './components/application-management/application/application.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'recipe', component: RecipeManagementComponent },
   { path: 'apply', component: ApplicationComponent },
   { path: 'about', component: AboutUsComponent },
-  { path: 'contact', component: ContactUsComponent }
+  { path: 'contact', component: ContactUsComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
