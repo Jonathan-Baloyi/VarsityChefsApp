@@ -6,15 +6,18 @@ import { ApplicationComponent } from './components/application-management/applic
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { LoginComponent } from './components/login/login.component';
+import { EditApplicationComponent } from './components/application-management/edit-application/edit-application.component';
+import { AuthGuard } from './components/login/Auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'recipe', component: RecipeManagementComponent },
   { path: 'apply', component: ApplicationComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'contact', component: ContactUsComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'edit', component: EditApplicationComponent},
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

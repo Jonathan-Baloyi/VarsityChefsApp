@@ -38,6 +38,9 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ApplicationComponent } from './application-management/application/application.component';
 import { ApplicationService } from '../services/application.service';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './login/Auth.guard';
+import { AuthenticationService } from './login/auth.service';
+import { EditApplicationComponent } from './application-management/edit-application/edit-application.component';
 
 @NgModule({
   imports: [
@@ -66,6 +69,8 @@ import { LoginComponent } from './login/login.component';
     MatTabsModule,
   ],
   providers: [
+    AuthGuard,
+    AuthenticationService,
     ApplicationService,
     MatIconRegistry,
     MatError,
@@ -78,7 +83,8 @@ import { LoginComponent } from './login/login.component';
   AboutUsComponent,
   ContactUsComponent,
   ApplicationComponent,
-  LoginComponent],
+  LoginComponent,
+  EditApplicationComponent],
 
   exports: [CommonModule,
     FormsModule,
