@@ -31,7 +31,7 @@ import {
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration } from './api-configuration';
-import { ApplicationModule } from './components/application-management/application.module';
+import { VarsityChefsModule } from './components/varsity-chefs.module';
 
 
 @NgModule({
@@ -43,14 +43,14 @@ import { ApplicationModule } from './components/application-management/applicati
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ApplicationModule
+    VarsityChefsModule
   ],
   providers: [ApiConfiguration],
   bootstrap: [AppComponent],
   exports: [
     AppRoutingModule,
     HttpClientModule,
-    ApplicationModule
+    VarsityChefsModule
   ]
 })
 export class AppModule { }

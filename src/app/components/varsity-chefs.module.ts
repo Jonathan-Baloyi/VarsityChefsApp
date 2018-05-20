@@ -31,6 +31,11 @@ import {
 import { CdkTableModule } from '@angular/cdk/table';
 
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { RecipeManagementComponent } from './recipe-management/recipe-management.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ApplicationComponent } from './application-management/application/application.component';
 
 @NgModule({
   imports: [
@@ -65,7 +70,11 @@ import { RouterModule } from '@angular/router';
     MatChipRemove],
 
   declarations: [
-  ],
+  HomeComponent,
+  RecipeManagementComponent,
+  AboutUsComponent,
+  ContactUsComponent,
+  ApplicationComponent],
 
   exports: [CommonModule,
     FormsModule,
@@ -91,4 +100,4 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
     MatSlideToggleModule]
 })
-export class ApplicationModule { }
+export class VarsityChefsModule { }
