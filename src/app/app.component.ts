@@ -11,7 +11,7 @@ export class AppComponent {
   { path: '/apply', label: 'Apply' },
   { path: '/about', label: 'About Us' },
   { path: '/contact', label: 'Contact Us' },
-  { path: 'edit', label: 'Edit application'}
+  // { path: 'edit', label: 'Edit application'}
   ];
   title = 'app';
 }

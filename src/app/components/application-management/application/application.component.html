@@ -2,14 +2,92 @@
     <div class="container">
         <div class="row">
             <mat-card class="col-xl-12 col-xl-offset-12 m">
-                <mat-card-header>
+                <mat-card-title>
                     <h4>Application form</h4>
-                </mat-card-header>
+                </mat-card-title>
+                <hr />
                 <mat-card-content>
-                    <mat-form-field class="col-lg-12">
-                        <input matInput type="text" placeholder="Name" [(ngModel)]="application.name" name="name" #name="ngModel" required>
-                        <mat-error *ngIf="name.hasError('required')">This is a required field</mat-error>
-                    </mat-form-field>
+                    <mat-card-title>
+                        <h5>Personal Details</h5>
+                    </mat-card-title>
+
+                    <div class="row">
+                        <mat-form-field class="col-lg-6 col-md-12">
+                            <input matInput type="text" placeholder="Firstname" [(ngModel)]="application.name" name="name" #name="ngModel" required>
+                            <mat-error *ngIf="name.hasError('required')">This is a required field</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-6 col-md-12">
+                            <input matInput type="text" placeholder="Surname" [(ngModel)]="application.surname" name="surname" #surname="ngModel" required>
+                            <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field class="col-lg-4 col-md-12">
+                            <input matInput type="text" placeholder="Cellphone" [(ngModel)]="application.cellNumber" name="cell" #cell="ngModel" required>
+                            <mat-error *ngIf="cell.hasError('required')">This is a required field</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-4 col-md-12">
+                            <input matInput type="text" placeholder="Telephone" [(ngModel)]="application.telephone" name="tel" #tel="ngModel">
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-4 col-md-12">
+                            <input matInput type="text" placeholder="Email" [(ngModel)]="application.email" name="email" #email="ngModel" required>
+                            <mat-error *ngIf="email.hasError('required')">This is a required field</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field class="col-lg-2 col-md-12">
+                            <mat-select placeholder="Nationality" [(ngModel)]="nationalityCheck" name="nat" #nat="ngModel">
+                                <mat-option *ngFor="let nat of nationality" [value]="nat.value">
+                                    {{ nat.text }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="nat.hasError('required')">This is a required field</mat-error>
+                        </mat-form-field>
+                        <mat-form-field *ngIf="!nationalityCheck" class="col-lg-10 col-md-12">
+                            <input matInput type="text" placeholder="Please Specify nationality" [(ngModel)]="application.cellNumber" name="cell" #cell="ngModel" required>
+                            <mat-error *ngIf="cell.hasError('required')">This is a required field</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="nationalityCheck" class="row">
+                        <mat-form-field class="col-lg-6 col-md-12">
+                            <input matInput type="text" placeholder="ID No" [(ngModel)]="application.cellNumber" name="idNo" #idNo="ngModel" (change)="pickUpChange(idNo, idNo.value)" required>
+                            <mat-error *ngIf="idNo.hasError('required')">This is a required field</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-2 col-md-12">
+                            <mat-select placeholder="Gender" [(ngModel)]="application.gender" name="gender" #gender="ngModel">
+                                <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                                    {{ gender.text }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="gender.hasError('required')">This is a required field</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-4" lg>
+                            <input matInput [matDatepicker]="picker" placeholder="Date of Birth (MM/DD/YYYY)" [(ngModel)]="application.dateOfBirth" name="picker">
+                            <mat-datepicker-toggle style="color:#60cae4" title="Select Start Date" matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker [startView]="yearView ? 'year' : 'month'"></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="!nationalityCheck" class="row">
+                        <mat-form-field class="col-lg-6 col-md-12">
+                            <input matInput type="text" placeholder="Passport Number" [(ngModel)]="application.cellNumber" name="pass" #pass="ngModel" required>
+                            <mat-error *ngIf="pass.hasError('required')">This is a required field</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-2 col-md-12">
+                            <mat-select placeholder="Gender" [(ngModel)]="application.gender" name="gender" #gender="ngModel">
+                                <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                                    {{ gender.text }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="gender.hasError('required')">This is a required field</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-4" lg>
+                            <input matInput [matDatepicker]="picker" placeholder="Date of Birth (MM/DD/YYYY)" [(ngModel)]="application.dateOfBirth" name="picker">
+                            <mat-datepicker-toggle style="color:#60cae4" title="Select Start Date" matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker [startView]="yearView ? 'year' : 'month'"></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
                 </mat-card-content>
                 <mat-card-actions class="action">
                     <div class="d-flex justify-content-end">

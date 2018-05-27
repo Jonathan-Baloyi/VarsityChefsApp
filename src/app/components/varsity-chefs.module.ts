@@ -27,6 +27,8 @@ import {
   MatChipInput,
   MatChipRemove,
   MatTabsModule,
+  MatExpansionModule,
+  MatExpansionPanel,
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 
@@ -52,6 +54,7 @@ import { EditApplicationComponent } from './application-management/edit-applicat
     MatSelectModule,
     MatTableModule,
     CdkTableModule,
+    MatExpansionModule,
     MatAutocompleteModule,
     MatTooltipModule,
     MatSlideToggleModule,
