@@ -51,7 +51,7 @@
                     </div>
                     <div *ngIf="nationalityCheck" class="row">
                         <mat-form-field class="col-lg-6 col-md-12">
-                            <input matInput type="text" placeholder="ID No" [(ngModel)]="application.cellNumber" name="idNo" #idNo="ngModel" (change)="pickUpChange(idNo, idNo.value)" required>
+                            <input matInput type="text" placeholder="ID Number" [(ngModel)]="application.cellNumber" name="idNo" #idNo="ngModel" (change)="pickUpChange(idNo, idNo.value)" required>
                             <mat-error *ngIf="idNo.hasError('required')">This is a required field</mat-error>
                         </mat-form-field>
                         <mat-form-field class="col-lg-2 col-md-12">

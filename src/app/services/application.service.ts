@@ -21,17 +21,15 @@ export class ApplicationService extends BaseService {
   }
 
   /**
-   * @param email undefined
    * @return Success
    */
-   ApiApplicationByEmailGetResponse(email: string): Observable<HttpResponse<Application>> {
+   ApiApplicationGetResponse(): Observable<HttpResponse<Application[]>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-
     let req = new HttpRequest<any>(
       "GET",
-      this.rootUrl + `/api/Application/${email}`,
+      this.rootUrl + `/api/Application`,
       __body,
       {
         headers: __headers,
@@ -43,70 +41,18 @@ export class ApplicationService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Application = null;
-        _body = _resp.body as Application
-        return _resp.clone({body: _body}) as HttpResponse<Application>;
+        let _body: Application[] = null;
+        _body = _resp.body as Application[]
+        return _resp.clone({body: _body}) as HttpResponse<Application[]>;
       })
     );
   }
 
   /**
-   * @param email undefined
    * @return Success
    */
-   ApiApplicationByEmailGet(email: string): Observable<Application> {
-    return this.ApiApplicationByEmailGetResponse(email).pipe(
-      map(_r => _r.body)
-    );
-  }
-
-  /**
-   * @param params The `ApplicationService.ApiLoginGetParams` containing the following parameters:
-   *
-   * - `password`: 
-   *
-   * - `email`: 
-   *
-   * @return Success
-   */
-   ApiLoginGetResponse(params: ApplicationService.ApiLoginGetParams): Observable<HttpResponse<boolean>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    if (params.password != null) __params = __params.set("password", params.password.toString());
-    if (params.email != null) __params = __params.set("email", params.email.toString());
-    let req = new HttpRequest<any>(
-      "GET",
-      this.rootUrl + `/api/login`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'text'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: boolean = null;
-        _body = _resp.body == 'true'
-        return _resp.clone({body: _body}) as HttpResponse<boolean>;
-      })
-    );
-  }
-
-  /**
-   * @param params The `ApplicationService.ApiLoginGetParams` containing the following parameters:
-   *
-   * - `password`: 
-   *
-   * - `email`: 
-   *
-   * @return Success
-   */
-   ApiLoginGet(params: ApplicationService.ApiLoginGetParams): Observable<boolean> {
-    return this.ApiLoginGetResponse(params).pipe(
+   ApiApplicationGet(): Observable<Application[]> {
+    return this.ApiApplicationGetResponse().pipe(
       map(_r => _r.body)
     );
   }
@@ -147,6 +93,86 @@ export class ApplicationService extends BaseService {
    */
    ApiApplicationPost(application?: Application): Observable<string> {
     return this.ApiApplicationPostResponse(application).pipe(
+      map(_r => _r.body)
+    );
+  }
+
+  /**
+   * @param email undefined
+   * @return Success
+   */
+   ApiApplicationByEmailGetResponse(email: string): Observable<HttpResponse<Application>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      "GET",
+      this.rootUrl + `/api/Application/${email}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: Application = null;
+        _body = _resp.body as Application
+        return _resp.clone({body: _body}) as HttpResponse<Application>;
+      })
+    );
+  }
+
+  /**
+   * @param email undefined
+   * @return Success
+   */
+   ApiApplicationByEmailGet(email: string): Observable<Application> {
+    return this.ApiApplicationByEmailGetResponse(email).pipe(
+      map(_r => _r.body)
+    );
+  }
+
+  /**
+   * @param id undefined
+   * @return Success
+   */
+   ApiApplicationByIdGetResponse(id: number): Observable<HttpResponse<Application>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      "GET",
+      this.rootUrl + `/api/Application/${id}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: Application = null;
+        _body = _resp.body as Application
+        return _resp.clone({body: _body}) as HttpResponse<Application>;
+      })
+    );
+  }
+
+  /**
+   * @param id undefined
+   * @return Success
+   */
+   ApiApplicationByIdGet(id: number): Observable<Application> {
+    return this.ApiApplicationByIdGetResponse(id).pipe(
       map(_r => _r.body)
     );
   }
@@ -201,19 +227,47 @@ export class ApplicationService extends BaseService {
       map(_r => _r.body)
     );
   }
+
+  /**
+   * @param id undefined
+   */
+   ApiApplicationByIdDeleteResponse(id: number): Observable<HttpResponse<void>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      "DELETE",
+      this.rootUrl + `/api/Application/${id}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'text'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: void = null;
+        
+        return _resp.clone({body: _body}) as HttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * @param id undefined
+   */
+   ApiApplicationByIdDelete(id: number): Observable<void> {
+    return this.ApiApplicationByIdDeleteResponse(id).pipe(
+      map(_r => _r.body)
+    );
+  }
 }
 
 export module ApplicationService {
-
-  /**
-   * Parameters for ApiLoginGet
-   */
-   export interface ApiLoginGetParams {
-
-    password?: string;
-
-    email?: string;
-  }
 
   /**
    * Parameters for ApiApplicationByIdPut

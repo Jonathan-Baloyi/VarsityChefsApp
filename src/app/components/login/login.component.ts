@@ -3,6 +3,8 @@ import { ApplicationService } from '../../services/application.service';
 import { Application } from '../../models';
 import { AuthenticationService } from './auth.service';
 import { Router } from '@angular/router';
+import { CredentialsViewModel } from '../../models/credentials-view-model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,22 +12,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email = '';
-  password = '';
+ private user: CredentialsViewModel = {userName: '', password: ''};
+
   constructor(private applicationService: ApplicationService,
     private authenticationService: AuthenticationService,
-  private router: Router) { }
+    private auth: AuthService,
+    private router: Router) { }
 
   login() {
-    this.applicationService.ApiLoginGet({email: this.email, password: this.password})
-    .subscribe(x => {
-        if ( x === true) {
-         // this.router.navigate([this.authenticationService.urlRedirect]);
-        } else {
-          alert('Incorrect username or password');
+    this.auth.ApiAuthLoginPost(this.user).subscribe(results => {
+        if (results) {
+          localStorage.setItem('auth_token', results.auth_token);
+          alert('Sucessfully logged in');
+          this.authenticationService.isLoggedIn = true;
+          this.router.navigate(['apply']);
         }
-    });
 
+    }, error => {
+      alert(error.error);
+    });
   }
 
   ngOnInit() {

@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'recipe', component: RecipeManagementComponent },
-  { path: 'apply', component: ApplicationComponent },
+  { path: 'apply', component: ApplicationComponent , canActivate: [AuthGuard] },
   { path: 'about', component: AboutUsComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'edit', component: EditApplicationComponent},

@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   api: {
-    varsityChefs: 'http://localhost:5000'
+    varsityChefs: 'http://localhost:5001'
   }
 };

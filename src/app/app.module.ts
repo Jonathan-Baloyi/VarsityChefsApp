@@ -33,6 +33,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration } from './api-configuration';
 import { VarsityChefsModule } from './components/varsity-chefs.module';
 import { ApplicationService } from './services';
+import { AuthService } from './services/auth.service';
+import { AccountsService } from './services/accounts.service';
+import { DashboardService } from './services/dashboard.service';
+import { ExternalAuthService } from './services/external-auth.service';
+import { ProfileService } from './services/profile.service';
 
 
 @NgModule({
@@ -47,7 +52,12 @@ import { ApplicationService } from './services';
     VarsityChefsModule
   ],
   providers: [ApiConfiguration,
-    ApplicationService
+    ApplicationService,
+    AuthService,
+    AccountsService,
+    DashboardService,
+    ExternalAuthService,
+    ProfileService
   ],
   bootstrap: [AppComponent],
   exports: [

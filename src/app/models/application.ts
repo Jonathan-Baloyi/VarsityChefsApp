@@ -1,12 +1,17 @@
 /* tslint:disable */
+import { ResidentialAddress } from './residential-address';
+import { AlternativePerson } from './alternative-person';
+import { PostalAddress } from './postal-address';
 
 export interface Application {
 
-  alternativeInitials?: string;
+  disability?: string;
 
   id?: number;
 
-  surname?: string;
+  firstName?: string;
+
+  lastName?: string;
 
   cellNumber?: string;
 
@@ -28,7 +33,7 @@ export interface Application {
 
   doYouHaveAnyDisability?: boolean;
 
-  disability?: string;
+  applicantId?: number;
 
   doYouHaveAnyAllegies?: boolean;
 
@@ -38,67 +43,11 @@ export interface Application {
 
   whichCookingShows?: string;
 
-  resLine1?: string;
+  residentialAddress?: ResidentialAddress;
 
-  resLine2?: string;
+  alternativePerson?: AlternativePerson;
 
-  resLine3?: string;
-
-  resCity?: string;
-
-  resSurburb?: string;
-
-  resProvince?: string;
-
-  resCountry?: string;
-
-  resCode?: string;
-
-  alternativeName?: string;
-
-  alternativeSurname?: string;
-
-  name?: string;
-
-  alternativeRelationShip?: string;
-
-  alternativeCellNumber?: string;
-
-  alternativeTelephone?: string;
-
-  alternativeEmailAddress?: string;
-
-  alternativeLine1?: string;
-
-  alternativeLine2?: string;
-
-  alternativeLine3?: string;
-
-  alternativeCity?: string;
-
-  alternativeSurburb?: string;
-
-  alternativeProvince?: string;
-
-  alternativeCountry?: string;
-
-  alternativeCode?: string;
-
-  postalLine1?: string;
-
-  postalLine2?: string;
-
-  postalLine3?: string;
-
-  postalCity?: string;
-
-  postalSurburb?: string;
-
-  postalProvince?: string;
-
-  postalCountry?: string;
-
-  postalCode?: string;
+  postalAddress?: PostalAddress;
 
   haveYouOrYourParentsBeenEmployedByVarsityChefs?: boolean;
 
@@ -113,6 +62,4 @@ export interface Application {
   declaration?: boolean;
 
   dateRegistered?: string;
-
-  password?: string;
 }
