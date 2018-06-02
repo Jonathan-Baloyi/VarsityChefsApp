@@ -23,13 +23,14 @@ export class LoginComponent implements OnInit {
     this.auth.ApiAuthLoginPost(this.user).subscribe(results => {
         if (results) {
           localStorage.setItem('auth_token', results.auth_token);
-          alert('Sucessfully logged in');
           this.authenticationService.isLoggedIn = true;
+          window.location.reload();
           this.router.navigate(['apply']);
+
         }
 
     }, error => {
-      alert(error.error);
+      alert( JSON.stringify(error.error));
     });
   }
 

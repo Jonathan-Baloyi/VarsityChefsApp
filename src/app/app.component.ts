@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './components/login/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  title = 'app';
+
   navLinks = [{ path: '/home', label: 'Home' },
   { path: '/recipe', label: 'Recipes' },
   { path: '/apply', label: 'Apply' },
@@ -13,5 +17,26 @@ export class AppComponent {
   { path: '/contact', label: 'Contact Us' },
   // { path: 'edit', label: 'Edit application'}
   ];
-  title = 'app';
+  show;
+
+  constructor(private authServ: AuthenticationService,
+              private router: Router) {
+                this.show = this.authServ.isLoggedIn;
+
+  }
+
+  ngOnInit() {
+
+    if (localStorage.length > 0) {
+      this.show = true;
+   }
+
+  }
+
+  logout() {
+    this.show = false;
+    localStorage.clear();
+
+    this.router.navigate(['/home']);
+  }
 }
