@@ -5,6 +5,7 @@ import { AuthenticationService } from './auth.service';
 import { Router } from '@angular/router';
 import { CredentialsViewModel } from '../../models/credentials-view-model';
 import { AuthService } from '../../services/auth.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-login',
@@ -12,29 +13,32 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
- private user: CredentialsViewModel = {userName: '', password: ''};
+  private user: CredentialsViewModel = { userName: '', password: '' };
 
-  constructor(private applicationService: ApplicationService,
+  constructor(
+    private applicationService: ApplicationService,
     private authenticationService: AuthenticationService,
     private auth: AuthService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   login() {
-    this.auth.ApiAuthLoginPost(this.user).subscribe(results => {
+    this.auth.ApiAuthLoginPost(this.user).subscribe(
+      results => {
+        const res = JSON.parse(results);
+
         if (results) {
-          localStorage.setItem('auth_token', results.auth_token);
+          localStorage.setItem('auth_token', res.auth_token);
           this.authenticationService.isLoggedIn = true;
           window.location.reload();
           this.router.navigate(['apply']);
-
         }
-
-    }, error => {
-      alert( JSON.stringify(error.error));
-    });
+      },
+      error => {
+        alert(JSON.stringify(error.error));
+      }
+    );
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
