@@ -13,11 +13,11 @@
 
                     <div class="row">
                         <mat-form-field class="col-lg-6 col-md-12">
-                            <input matInput type="text" placeholder="Firstname" [(ngModel)]="application.name" name="name" #name="ngModel" required>
+                            <input matInput type="text" placeholder="Firstname" [(ngModel)]="application.firstName" name="name" #name="ngModel" required>
                             <mat-error *ngIf="name.hasError('required')">This is a required field</mat-error>
                         </mat-form-field>
                         <mat-form-field class="col-lg-6 col-md-12">
-                            <input matInput type="text" placeholder="Surname" [(ngModel)]="application.surname" name="surname" #surname="ngModel" required>
+                            <input matInput type="text" placeholder="Surname" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
                             <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
                         </mat-form-field>
                     </div>

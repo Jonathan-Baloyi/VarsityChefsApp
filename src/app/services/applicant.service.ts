@@ -12,7 +12,7 @@ import { filter } from 'rxjs/operators/filter';
 import { RegistrationViewModel } from '../models/registration-view-model';
 
 @Injectable()
-export class AccountsService extends BaseService {
+export class ApplicantService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -21,16 +21,17 @@ export class AccountsService extends BaseService {
   }
 
   /**
-   * @param model undefined
+   * @param IdentityId undefined
+   * @return Success
    */
-   ApiAccountsPostResponse(model?: RegistrationViewModel): Observable<HttpResponse<any>> {
+   ByIdentityIdGetResponse(IdentityId: string): Observable<HttpResponse<RegistrationViewModel>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = model;
+
     let req = new HttpRequest<any>(
-      "POST",
-      this.rootUrl + `/api/Accounts`,
+      "GET",
+      this.rootUrl + `/${IdentityId}`,
       __body,
       {
         headers: __headers,
@@ -42,22 +43,23 @@ export class AccountsService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: void = null;
-        _body = _resp.body as any;
-        return _resp.clone({body: _body}) as HttpResponse<any>;
+        let _body: RegistrationViewModel = null;
+        _body = _resp.body as RegistrationViewModel
+        return _resp.clone({body: _body}) as HttpResponse<RegistrationViewModel>;
       })
     );
   }
 
   /**
-   * @param model undefined
+   * @param IdentityId undefined
+   * @return Success
    */
-   ApiAccountsPost(model?: RegistrationViewModel): Observable<any> {
-    return this.ApiAccountsPostResponse(model).pipe(
+   ByIdentityIdGet(IdentityId: string): Observable<RegistrationViewModel> {
+    return this.ByIdentityIdGetResponse(IdentityId).pipe(
       map(_r => _r.body)
     );
   }
 }
 
-export module AccountsService {
+export module ApplicantService {
 }

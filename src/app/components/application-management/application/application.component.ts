@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Application } from '../../../models';
 import { ApplicationService } from '../../../services';
 import { Alert } from 'selenium-webdriver';
+import { ApplicantService } from '../../../services/applicant.service';
 
 @Component({
   selector: 'app-application',
@@ -17,9 +18,21 @@ export class ApplicationComponent implements OnInit {
   nationality = [{ value: true, text: 'South African' }, { value: false, text: 'Other' }];
   nationalityCheck = true;
 
-  constructor(private router: Router, private applicationService: ApplicationService) { }
+  constructor(private router: Router,
+    private applicationService:
+    ApplicationService,
+    private applicantService: ApplicantService
+  ) { }
 
   ngOnInit() {
+    this.applicantService
+    .ByIdentityIdGet(localStorage.getItem('Id'))
+    .subscribe(x => {
+      this.application.firstName = x.firstName;
+      this.application.lastName = x.lastName;
+      this.application.cellNumber = x.phoneNumber;
+      this.application.email = x.email;
+    });
   }
 
   public pickUpChange(idObject, changed) {

@@ -4,7 +4,7 @@
     <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
     {{link.label}}
   </a>
-    <button *ngIf="!show" type="button" class="btn btn-outline-secondary" routerLink="/login" style="float:right; margin-top: 7px; margin:10px">Register</button>
+    <button *ngIf="!show" type="button" class="btn btn-outline-secondary" routerLink="/sign-up" style="float:right; margin-top: 7px; margin:10px">Sign Up</button>
     <button *ngIf="!show" type="button" class="btn btn-outline-secondary" routerLink="/login" style="float:right; margin-top: 7px; margin:10px">Sign In</button>
     <button *ngIf="show" type="button" class="btn btn-outline-secondary" (click)="logout()" style="float:right; margin-top: 7px; margin:10px">Sign Out</button>
 </nav>

@@ -38,6 +38,7 @@ import { AccountsService } from './services/accounts.service';
 import { DashboardService } from './services/dashboard.service';
 import { ExternalAuthService } from './services/external-auth.service';
 import { ProfileService } from './services/profile.service';
+import { ApplicantService } from './services/applicant.service';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { ProfileService } from './services/profile.service';
     AccountsService,
     DashboardService,
     ExternalAuthService,
-    ProfileService
+    ProfileService,
+    ApplicantService
   ],
   bootstrap: [AppComponent],
   exports: [

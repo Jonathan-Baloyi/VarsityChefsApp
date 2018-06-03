@@ -26,11 +26,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (localStorage.length > 0) {
       this.show = true;
    }
-
   }
 
   logout() {

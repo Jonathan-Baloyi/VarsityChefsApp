@@ -43,6 +43,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './login/Auth.guard';
 import { AuthenticationService } from './login/auth.service';
 import { EditApplicationComponent } from './application-management/edit-application/edit-application.component';
+import { ApplyErrorComponent } from './apply-error/apply-error.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   imports: [
@@ -87,7 +89,9 @@ import { EditApplicationComponent } from './application-management/edit-applicat
   ContactUsComponent,
   ApplicationComponent,
   LoginComponent,
-  EditApplicationComponent],
+  EditApplicationComponent,
+  ApplyErrorComponent,
+  SignUpComponent],
 
   exports: [CommonModule,
     FormsModule,

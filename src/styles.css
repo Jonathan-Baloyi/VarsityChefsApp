@@ -16,6 +16,13 @@
     margin-top: 10%;
 }
 
+.d {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+}
+
 .bg {
     background-color: #f4f5f9;
 }

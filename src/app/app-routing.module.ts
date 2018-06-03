@@ -8,6 +8,8 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { LoginComponent } from './components/login/login.component';
 import { EditApplicationComponent } from './components/application-management/edit-application/edit-application.component';
 import { AuthGuard } from './components/login/Auth.guard';
+import { ApplyErrorComponent } from './components/apply-error/apply-error.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'contact', component: ContactUsComponent },
   { path: 'edit', component: EditApplicationComponent},
   { path: 'login', component: LoginComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'apply-error', component: ApplyErrorComponent },
 ];
 
 @NgModule({
