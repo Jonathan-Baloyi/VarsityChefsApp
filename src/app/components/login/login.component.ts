@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('Id', res.id);
           localStorage.setItem('auth_token', res.auth_token);
           this.authenticationService.isLoggedIn = true;
-          window.location.reload();
+          location.reload();
           this.router.navigate(['apply']);
         }
       },
