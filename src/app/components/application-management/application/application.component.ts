@@ -12,27 +12,64 @@ import { ApplicantService } from '../../../services/applicant.service';
   styleUrls: ['./application.component.css']
 })
 export class ApplicationComponent implements OnInit {
-
-  application: Application = {};
+  application: Application = {postalAddress: {}, residentialAddress: {}};
   genders = [{ value: true, text: 'Male' }, { value: false, text: 'Female' }];
-  nationality = [{ value: true, text: 'South African' }, { value: false, text: 'Other' }];
+  nationality = [
+    { value: true, text: 'South African' },
+    { value: false, text: 'Other' }
+  ];
   nationalityCheck = true;
+  permanantRes1 = false;
+  permanantRes2 = false;
 
-  constructor(private router: Router,
-    private applicationService:
-    ApplicationService,
+  address1 = false;
+  address2 = false;
+
+  constructor(
+    private router: Router,
+    private applicationService: ApplicationService,
     private applicantService: ApplicantService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.applicantService
-    .ByIdentityIdGet(localStorage.getItem('Id'))
-    .subscribe(x => {
-      this.application.firstName = x.firstName;
-      this.application.lastName = x.lastName;
-      this.application.cellNumber = x.phoneNumber;
-      this.application.email = x.email;
-    });
+      .ByIdentityIdGet(localStorage.getItem('Id'))
+      .subscribe(x => {
+        this.application.firstName = x.firstName;
+        this.application.lastName = x.lastName;
+        this.application.cellNumber = x.phoneNumber;
+        this.application.email = x.email;
+      });
+  }
+
+  onChange1(event) {
+    if (event.checked === true) {
+      this.permanantRes2 = false;
+      this.application.doYouHaveApermentResidence = true;
+    }
+  }
+
+  onChange2(event) {
+    if (event.checked === true) {
+      this.permanantRes1 = false;
+      this.application.doYouHaveApermentResidence = false;
+    }
+  }
+
+  onChangeAddress1(event) {
+    if (event.checked === true) {
+      this.address2 = false;
+      this.application.residentialAddress.resLine1 = this.application.postalAddress.postalLine1;
+      this.application.residentialAddress.resLine2 = this.application.postalAddress.postalLine2;
+      this.application.residentialAddress.resLine3 = this.application.postalAddress.postalLine3;
+
+    }
+  }
+
+  onChangeAddress2(event) {
+    if (event.checked === true) {
+      this.address1 = false;
+    }
   }
 
   public pickUpChange(idObject, changed) {
@@ -73,15 +110,17 @@ export class ApplicationComponent implements OnInit {
       this.application.nationality = 'South African';
     }
 
-    this.applicationService.ApiApplicationPost(this.application).subscribe(x => {
-      alert(x);
-    }, err => {
-      alert(err);
-    });
+    this.applicationService.ApiApplicationPost(this.application).subscribe(
+      x => {
+        alert(x);
+      },
+      err => {
+        alert(err);
+      }
+    );
   }
 
   backToSubjects() {
-      this.router.navigate(['/home']);
+    this.router.navigate(['/home']);
   }
-
 }
