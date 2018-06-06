@@ -27,6 +27,11 @@ export class ApplicantService extends BaseService {
    ByIdentityIdGetResponse(IdentityId: string): Observable<HttpResponse<RegistrationViewModel>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
+
+      __headers.append('Content-Type', 'application/json');
+      let authToken = localStorage.getItem('auth_token');
+      __headers.append('Authorization', `Bearer ${authToken}`);
+      
     let __body: any = null;
 
     let req = new HttpRequest<any>(

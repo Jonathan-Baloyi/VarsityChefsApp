@@ -21,6 +21,8 @@ export interface Application {
 
   gender?: boolean;
 
+  idNumber?: string;
+
   dateOfBirth?: string;
 
   nationality?: string;

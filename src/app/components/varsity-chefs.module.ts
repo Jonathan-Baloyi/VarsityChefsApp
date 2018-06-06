@@ -29,6 +29,7 @@ import {
   MatTabsModule,
   MatExpansionModule,
   MatExpansionPanel,
+  MatStepperModule,
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 
@@ -45,10 +46,12 @@ import { AuthenticationService } from './login/auth.service';
 import { EditApplicationComponent } from './application-management/edit-application/edit-application.component';
 import { ApplyErrorComponent } from './apply-error/apply-error.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
     CommonModule,
+    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     MatNativeDateModule,
@@ -72,6 +75,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MatDialogModule,
     RouterModule,
     MatTabsModule,
+    MatStepperModule
   ],
   providers: [
     AuthGuard,

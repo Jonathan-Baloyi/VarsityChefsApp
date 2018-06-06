@@ -1,4 +1,149 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" autocomplete="off">
+    <mat-horizontal-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Personal Details</ng-template>
+
+                <div class="row">
+                    <mat-form-field class="col-lg-6 col-md-12">
+                        <input matInput placeholder="FirstName" [(ngModel)]="application.firstName" formControlName="firstName" ngControl="firstName" required>
+                        <mat-error *ngIf="firstFormGroup.controls['firstName'].errors?.required ">The field is compulsory</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-6">
+                        <input matInput placeholder="LastName" [(ngModel)]="application.lastName" formControlName="lastName" ngControl="lastName" required>
+                        <mat-error *ngIf="firstFormGroup.controls['lastName'].errors?.required">The field is compulsory</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="col-lg-4 col-md-12">
+                        <input matInput placeholder="Cellphone" [(ngModel)]="application.cellNumber" formControlName="cellNumber" ngControl="cellNumber" required>
+                        <mat-error *ngIf="firstFormGroup.controls['cellNumber'].errors?.required">The field is compulsory</mat-error>
+
+                        <mat-error *ngIf="firstFormGroup.controls['cellNumber'].errors?.pattern">Cell number is invalid</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-4 col-md-12">
+                        <input matInput placeholder="Telephone" [(ngModel)]="application.telephone" formControlName="Telephone" ngControl="Telephone">
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-4 col-md-12">
+                        <input matInput placeholder="Email" [(ngModel)]="application.email" formControlName="email" ngControl="email" required>
+                        <mat-error *ngIf="firstFormGroup.controls['email'].errors?.required">The field is compulsory</mat-error>
+
+                        <mat-error *ngIf="firstFormGroup.controls['email'].errors?.pattern">Email is invalid</mat-error>
+                    </mat-form-field>
+
+                </div>
+                <div class="row">
+                    <mat-form-field class="col-lg-2 col-md-12">
+                        <mat-select placeholder="Nationality" [(ngModel)]="nationalityCheck" formControlName="nationality" ngControl="nationality">
+                            <mat-option *ngFor="let nat of nationality" [value]="nat.value">
+                                {{ nat.text }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="firstFormGroup.controls['nationality'].errors?.required ">The field is compulsory</mat-error>
+                    </mat-form-field>
+                    <mat-form-field *ngIf="!nationalityCheck" class="col-lg-10 col-md-12">
+                        <input matInput placeholder="Please specify your nationality" [(ngModel)]="application.nationality" formControlName="specifyNat" ngControl="specifyNat" required>
+                        <mat-error *ngIf="firstFormGroup.controls['specifyNat'].errors?.required">The field is compulsory</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div *ngIf="nationalityCheck" class="row">
+                    <mat-form-field class="col-lg-4 col-md-12">
+                        <input matInput placeholder="ID Number" [(ngModel)]="application.idNumber" formControlName="IdNumber" (change)="pickUpChange($event.currentTarget)" ngControl="IdNumber" required>
+                        <mat-error *ngIf="firstFormGroup.controls['IdNumber'].errors?.required">The field is compulsory</mat-error>
+                        <mat-error *ngIf="firstFormGroup.controls['IdNumber'].errors?.IdNumberIsValid">ID Number invalid</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-4 col-md-12">
+                        <mat-select placeholder="Gender" [(ngModel)]="application.gender" formControlName="gender" ngControl="gender">
+                            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                                {{ gender.text }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="firstFormGroup.controls['gender'].errors?.required">The field is compulsory</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-4">
+                        <input matInput [matDatepicker]="picker" placeholder="Date of Birth (MM/DD/YYYY)" [(ngModel)]="application.dateOfBirth" formControlName="dateOfBirth" ngControl="dateOfBirth">
+                        <mat-datepicker-toggle style="color:#60cae4" title="Select Start Date" matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker [startView]="yearView ? 'year' : 'month'"></mat-datepicker>
+                        <mat-error *ngIf="firstFormGroup.controls['dateOfBirth'].errors?.required">The field is compulsory</mat-error>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="!nationalityCheck" class="row">
+                    <mat-form-field class="col-lg-4 col-md-12">
+                        <input matInput placeholder="Passport Number" [(ngModel)]="application.passportNumber" formControlName="passport" ngControl="passport" required>
+                        <mat-error *ngIf="firstFormGroup.controls['passport'].errors?.required">The field is compulsory</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-4 col-md-12">
+                        <mat-select placeholder="Gender" [(ngModel)]="application.gender" formControlName="gender" ngControl="gender">
+                            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                                {{ gender.text }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="firstFormGroup.controls['gender'].errors?.required">The field is compulsory</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-4">
+                        <input matInput [matDatepicker]="picker" placeholder="Date of Birth (MM/DD/YYYY)" [(ngModel)]="application.dateOfBirth" formControlName="dateOfBirth" ngControl="dateOfBirth">
+                        <mat-datepicker-toggle style="color:#60cae4" title="Select Start Date" matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker [startView]="yearView ? 'year' : 'month'"></mat-datepicker>
+                        <mat-error *ngIf="firstFormGroup.controls['dateOfBirth'].errors?.required">The field is compulsory</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <button mat-raised-button matStepperNext color="primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Address Details</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button color="warn" matStepperPrevious>Back</button>
+                    <button mat-raised-button matStepperNext color="primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup">
+                <ng-template matStepLabel>Next of kin Details</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="thirdCtrl" required>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button color="warn" matStepperPrevious>Back</button>
+                    <button mat-raised-button matStepperNext color="primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="fourthFormGroup">
+            <form [formGroup]="fourthFormGroup">
+                <ng-template matStepLabel>Tertiary Education</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="fourthCtrl" required>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button color="warn" matStepperPrevious>Back</button>
+                    <button mat-raised-button matStepperNext color="primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Submit</ng-template>
+            <li>I hereby full consent declare that the above are true and correct and understand that any false or incomplete may constitute </li>
+            <div>
+                <button mat-raised-button color="warn" matStepperPrevious>Back</button>
+                <button mat-raised-button type="submit" color="primary" [disabled]="!f.form.valid">Submit</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</form>
+
+<!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)" autocomplete="off">
     <div class="container">
         <div class="row">
             <mat-card class="col-xl-12 col-xl-offset-12 m">
@@ -6,10 +151,16 @@
                     <h4>Application form</h4>
                 </mat-card-title>
                 <hr />
+
+                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                    <mat-step [stepControl]="firstFormGroup">
+                        <form [formGroup]="firstFormGroup">
+                            <ng-template matStepLabel>Personal details</ng-template>
+                        </form>
+                    </mat-step>
+                </mat-horizontal-stepper>
                 <mat-card-content>
-                    <mat-card-title>
-                        <h5>Personal Details</h5>
-                    </mat-card-title>
+
 
                     <div class="row">
                         <mat-form-field class="col-lg-6 col-md-12">
@@ -211,4 +362,4 @@
             </mat-card>
         </div>
     </div>
-</form>
+</form> -->

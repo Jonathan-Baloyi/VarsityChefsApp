@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     this.auth.ApiAuthLoginPost(this.user).subscribe(
       results => {
         const res = JSON.parse(results);
+        debugger;
         if (results) {
           localStorage.setItem('Id', res.id);
           localStorage.setItem('auth_token', res.auth_token);

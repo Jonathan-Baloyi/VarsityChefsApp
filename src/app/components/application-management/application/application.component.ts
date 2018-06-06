@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Application } from '../../../models';
 import { ApplicationService } from '../../../services';
 import { Alert } from 'selenium-webdriver';
@@ -25,13 +25,45 @@ export class ApplicationComponent implements OnInit {
   address1 = false;
   address2 = false;
 
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
+  isIdValid: boolean;
+
   constructor(
     private router: Router,
     private applicationService: ApplicationService,
-    private applicantService: ApplicantService
+    private applicantService: ApplicantService,
+    private _formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
+
+    this.firstFormGroup = this._formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      cellNumber: ['', Validators.required && Validators.pattern(/^((\+[0-9]{2})|[0])[0-9]{2}([ -])?[0-9]{3}([ -])?[0-9]{4}$/)],
+      Telephone: ['', Validators],
+      email: ['', Validators.required && Validators.pattern(/^[a-z0-9]+([.-][_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/i)],
+      nationality: [''],
+      specifyNat: [''],
+      IdNumber: ['', Validators.required],
+      gender: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      passport: ['']
+
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      fourthCtrl: ['', Validators.required]
+    });
+
     this.applicantService
       .ByIdentityIdGet(localStorage.getItem('Id'))
       .subscribe(x => {
@@ -72,8 +104,12 @@ export class ApplicationComponent implements OnInit {
     }
   }
 
-  public pickUpChange(idObject, changed) {
-    if (idObject.valid === true) {
+  public pickUpChange(idObject) {
+
+    const changed = idObject.value;
+
+    if ( idObject.validity.valid === true) {
+      this.isIdValid = true;
       const yearOfBirth = changed[0] + changed[1];
       const monthOfBirth = changed[2] + changed[3];
       const dayOfBirth = changed[4] + changed[5];
@@ -101,6 +137,7 @@ export class ApplicationComponent implements OnInit {
 
       this.application.dateOfBirth = `${year}-${monthOfBirth}-${dayOfBirth}T00:00:00.000Z`;
     } else {
+      this.isIdValid = false;
       alert('Invalid ID No');
     }
   }
@@ -109,7 +146,7 @@ export class ApplicationComponent implements OnInit {
     if (this.nationalityCheck === true) {
       this.application.nationality = 'South African';
     }
-
+    debugger;
     this.applicationService.ApiApplicationPost(this.application).subscribe(
       x => {
         alert(x);
