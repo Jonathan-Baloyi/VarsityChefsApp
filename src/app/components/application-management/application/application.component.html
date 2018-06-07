@@ -1,6 +1,6 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" autocomplete="off">
     <mat-horizontal-stepper [linear]="true" #stepper>
-        <mat-step>
+        <mat-step [stepControl]="form1">
             <form #form1="ngForm">
                 <ng-template matStepLabel>Personal Details</ng-template>
 
@@ -89,7 +89,7 @@
                 </div>
             </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="form2">
             <form #form2="ngForm">
                 <ng-template matStepLabel>Address Details</ng-template>
 
@@ -99,7 +99,7 @@
                 </div>
             </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="form3">
             <form #form3="ngForm">
                 <ng-template matStepLabel>Next of kin Details</ng-template>
 
@@ -109,7 +109,7 @@
                 </div>
             </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="form4">
             <form #form4="ngForm">
                 <ng-template matStepLabel>Tertiary Education</ng-template>
 

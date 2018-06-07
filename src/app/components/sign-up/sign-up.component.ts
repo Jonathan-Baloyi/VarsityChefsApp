@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { AccountsService } from '../../services/accounts.service';
 import { CredentialsViewModel } from '../../models/credentials-view-model';
+import { Patterns } from '../validators/Patterns';
 
 @Component({
   selector: 'app-sign-up',
@@ -23,7 +24,8 @@ export class SignUpComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private accountService: AccountsService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private patterns: Patterns
   ) {}
 
   ngOnInit() {

@@ -26,7 +26,6 @@ export class ApplicationComponent implements OnInit {
   address1 = false;
   address2 = false;
 
-
   constructor(
     private router: Router,
     public patterns: Patterns,
