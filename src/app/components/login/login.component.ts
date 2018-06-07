@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.ApiAuthLoginPost(this.user).subscribe(
       results => {
+        debugger;
         const res = JSON.parse(results);
         if (results) {
           localStorage.setItem('Id', res.id);

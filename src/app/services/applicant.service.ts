@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { filter } from 'rxjs/operators/filter';
 
-import { RegistrationViewModel } from '../models/registration-view-model';
+import { ApplicantViewModel } from '../models/applicant-view-model';
 
 @Injectable()
 export class ApplicantService extends BaseService {
@@ -24,14 +24,9 @@ export class ApplicantService extends BaseService {
    * @param IdentityId undefined
    * @return Success
    */
-   ByIdentityIdGetResponse(IdentityId: string): Observable<HttpResponse<RegistrationViewModel>> {
+   ByIdentityIdGetResponse(IdentityId: string): Observable<HttpResponse<ApplicantViewModel>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
-
-      __headers.append('Content-Type', 'application/json');
-      let authToken = localStorage.getItem('auth_token');
-      __headers.append('Authorization', `Bearer ${authToken}`);
-      
     let __body: any = null;
 
     let req = new HttpRequest<any>(
@@ -48,9 +43,9 @@ export class ApplicantService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: RegistrationViewModel = null;
-        _body = _resp.body as RegistrationViewModel
-        return _resp.clone({body: _body}) as HttpResponse<RegistrationViewModel>;
+        let _body: ApplicantViewModel = null;
+        _body = _resp.body as ApplicantViewModel
+        return _resp.clone({body: _body}) as HttpResponse<ApplicantViewModel>;
       })
     );
   }
@@ -59,7 +54,7 @@ export class ApplicantService extends BaseService {
    * @param IdentityId undefined
    * @return Success
    */
-   ByIdentityIdGet(IdentityId: string): Observable<RegistrationViewModel> {
+   ByIdentityIdGet(IdentityId: string): Observable<ApplicantViewModel> {
     return this.ByIdentityIdGetResponse(IdentityId).pipe(
       map(_r => _r.body)
     );

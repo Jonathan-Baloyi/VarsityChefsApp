@@ -26,13 +26,8 @@ export class AuthService extends BaseService {
    ApiAuthLoginPostResponse(credentials?: CredentialsViewModel): Observable<HttpResponse<any>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
-
-    __headers.append('Content-Type', 'application/json');
-
     let __body: any = null;
-
     __body = credentials;
-    
     let req = new HttpRequest<any>(
       "POST",
       this.rootUrl + `/api/Auth/login`,
@@ -47,8 +42,8 @@ export class AuthService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: any = null;
-        _body = _resp.body as any;
+        let _body: void = null;
+        _body = _resp.body as any
         return _resp.clone({body: _body}) as HttpResponse<any>;
       })
     );

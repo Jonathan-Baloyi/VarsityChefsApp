@@ -23,6 +23,8 @@ export interface Application {
 
   idNumber?: string;
 
+  passportNumber?: string;
+
   dateOfBirth?: string;
 
   nationality?: string;
@@ -64,4 +66,6 @@ export interface Application {
   declaration?: boolean;
 
   dateRegistered?: string;
+
+  status?: boolean;
 }

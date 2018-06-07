@@ -43,8 +43,8 @@ export class AccountsService extends BaseService {
       map(_r => {
         let _resp = _r as HttpResponse<any>;
         let _body: void = null;
-        _body = _resp.body as any;
-        return _resp.clone({body: _body}) as HttpResponse<any>;
+        _body = _resp.body as any
+        return _resp.clone({body: _body}) as HttpResponse<void>;
       })
     );
   }

@@ -6,6 +6,7 @@ import { ApplicationService } from '../../../services';
 import { Alert } from 'selenium-webdriver';
 import { ApplicantService } from '../../../services/applicant.service';
 import { Patterns } from '../../validators/Patterns';
+import * as moment from 'moment/moment';
 
 @Component({
   selector: 'app-application',
@@ -35,13 +36,27 @@ export class ApplicationComponent implements OnInit {
 
   ngOnInit() {
 
+    debugger;
     this.applicantService
       .ByIdentityIdGet(localStorage.getItem('Id'))
       .subscribe(x => {
+        debugger;
+         this.application.applicantId = x.id;
         this.application.firstName = x.firstName;
         this.application.lastName = x.lastName;
         this.application.cellNumber = x.phoneNumber;
         this.application.email = x.email;
+
+        // Comment out the code when you get home
+        // if (x.id > 0) {
+        //   this.applicationService
+        //  .ApiApplicationByEmailGet(x.email)
+        //  .subscribe(appl => {
+        //     this.application = appl;
+        //   });
+        // }
+
+
       });
   }
 
@@ -116,7 +131,8 @@ export class ApplicationComponent implements OnInit {
     if (this.nationalityCheck === true) {
       this.application.nationality = 'South African';
     }
-    debugger;
+    this.application.dateOfBirth = moment(this.application.dateOfBirth).format('YYYY-MM-DDT00:00:00.000Z');
+
     this.applicationService.ApiApplicationPost(this.application).subscribe(
       x => {
         alert(x);
