@@ -7,25 +7,25 @@
                 <div class="row">
                     <mat-form-field class="col-lg-6 col-md-12">
                         <input matInput type="text" placeholder="Firstname" [(ngModel)]="application.firstName" name="name" #name="ngModel" required>
-                        <mat-error *ngIf="name.hasError('required')">This is a required field</mat-error>
+                        <mat-error *ngIf="name.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                     <mat-form-field class="col-lg-6 col-md-12">
                         <input matInput type="text" placeholder="Surname" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                        <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
+                        <mat-error *ngIf="surname.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                 </div>
 
                 <div class="row">
                     <mat-form-field class="col-lg-4 col-md-12">
                         <input matInput type="text" placeholder="Cellphone" [(ngModel)]="application.cellNumber" name="cell" #cell="ngModel" required>
-                        <mat-error *ngIf="cell.hasError('required')">This is a required field</mat-error>
+                        <mat-error *ngIf="cell.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                     <mat-form-field class="col-lg-4 col-md-12">
                         <input matInput type="text" placeholder="Telephone" [(ngModel)]="application.telephone" name="tel" #tel="ngModel">
                     </mat-form-field>
                     <mat-form-field class="col-lg-4 col-md-12">
                         <input matInput type="text" placeholder="Email" [(ngModel)]="application.email" name="email" #email="ngModel" required>
-                        <mat-error *ngIf="email.hasError('required')">This is a required field</mat-error>
+                        <mat-error *ngIf="email.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                 </div>
 
@@ -36,17 +36,18 @@
                                 {{ nat.text }}
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="nat.hasError('required')">This is a required field</mat-error>
+                        <mat-error *ngIf="nat.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                     <mat-form-field *ngIf="!nationalityCheck" class="col-lg-10 col-md-12">
                         <input matInput type="text" placeholder="Please Specify nationality" [(ngModel)]="application.nationality" name="specifyNat" #specifyNat="ngModel" required>
-                        <mat-error *ngIf="specifyNat.hasError('required')">This is a required field</mat-error>
+                        <mat-error *ngIf="specifyNat.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                 </div>
                 <div *ngIf="nationalityCheck" class="row">
                     <mat-form-field class="col-lg-6 col-md-12">
-                        <input matInput type="text" placeholder="ID Number" [(ngModel)]="application.idNumber" name="idNo" #idNo="ngModel" (change)="pickUpChange(idNo, idNo.value)" required>
-                        <mat-error *ngIf="idNo.hasError('required')">This is a required field</mat-error>
+                        <input matInput type="text" placeholder="ID Number" [(ngModel)]="application.idNumber" name="idNo" #idNo="ngModel" (change)="pickUpChange(idNo, idNo.value)" appIsValidSouthAfricanIdNumber required>
+                        <mat-error *ngIf="idNo.hasError('required')">The field is compulsory</mat-error>
+                        <mat-error *ngIf="idNo.hasError('southAfricanIdNumber')">The ID number is Invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field class="col-lg-2 col-md-12">
                         <mat-select placeholder="Gender" [(ngModel)]="application.gender" name="gender" #gender="ngModel" required>
@@ -54,7 +55,7 @@
                                 {{ gender.text }}
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="gender.hasError('required')">This is a required field</mat-error>
+                        <mat-error *ngIf="gender.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                     <mat-form-field class="col-lg-4" lg>
                         <input matInput [matDatepicker]="picker" placeholder="Date of Birth (MM/DD/YYYY)" [(ngModel)]="application.dateOfBirth" name="picker" required>
@@ -65,7 +66,7 @@
                 <div *ngIf="!nationalityCheck" class="row">
                     <mat-form-field class="col-lg-6 col-md-12">
                         <input matInput type="text" placeholder="Passport Number" [(ngModel)]="application.passportNumber" name="pass" #pass="ngModel" required>
-                        <mat-error *ngIf="pass.hasError('required')">This is a required field</mat-error>
+                        <mat-error *ngIf="pass.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                     <mat-form-field class="col-lg-2 col-md-12">
                         <mat-select placeholder="Gender" [(ngModel)]="application.gender" name="gender" #gender="ngModel">
@@ -73,7 +74,7 @@
                                 {{ gender.text }}
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="gender.hasError('required')">This is a required field</mat-error>
+                        <mat-error *ngIf="gender.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                     <mat-form-field class="col-lg-4" lg>
                         <input matInput [matDatepicker]="picker" placeholder="Date of Birth (MM/DD/YYYY)" [(ngModel)]="application.dateOfBirth" name="picker">

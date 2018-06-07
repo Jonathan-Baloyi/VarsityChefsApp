@@ -29,7 +29,7 @@ import {
   MatTabsModule,
   MatExpansionModule,
   MatExpansionPanel,
-  MatStepperModule,
+  MatStepperModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 
@@ -47,6 +47,7 @@ import { EditApplicationComponent } from './application-management/edit-applicat
 import { ApplyErrorComponent } from './apply-error/apply-error.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { IsValidSouthAfricanIdNumberDirective } from './validators/is-valid-south-african-id-number.directive';
 
 @NgModule({
   imports: [
@@ -84,21 +85,26 @@ import { BrowserModule } from '@angular/platform-browser';
     MatIconRegistry,
     MatError,
     MatChipInput,
-    MatChipRemove],
+    MatChipRemove
+  ],
 
   declarations: [
-  HomeComponent,
-  RecipeManagementComponent,
-  AboutUsComponent,
-  ContactUsComponent,
-  ApplicationComponent,
-  LoginComponent,
-  EditApplicationComponent,
-  ApplyErrorComponent,
-  SignUpComponent],
+    IsValidSouthAfricanIdNumberDirective,
+    HomeComponent,
+    RecipeManagementComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    ApplicationComponent,
+    LoginComponent,
+    EditApplicationComponent,
+    ApplyErrorComponent,
+    SignUpComponent
+  ],
 
-  exports: [CommonModule,
+  exports: [
+    CommonModule,
     FormsModule,
+    IsValidSouthAfricanIdNumberDirective,
     MatNativeDateModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
@@ -119,6 +125,7 @@ import { BrowserModule } from '@angular/platform-browser';
     MatPaginatorModule,
     MatTabsModule,
     MatDialogModule,
-    MatSlideToggleModule]
+    MatSlideToggleModule
+  ]
 })
-export class VarsityChefsModule { }
+export class VarsityChefsModule {}

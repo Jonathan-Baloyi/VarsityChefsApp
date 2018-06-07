@@ -25,11 +25,6 @@ export class ApplicationComponent implements OnInit {
   address1 = false;
   address2 = false;
 
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
-  isIdValid: boolean;
 
   constructor(
     private router: Router,
@@ -85,7 +80,7 @@ export class ApplicationComponent implements OnInit {
     const changed = idObject.value;
 
     if ( idObject.valid === true) {
-      this.isIdValid = true;
+
       const yearOfBirth = changed[0] + changed[1];
       const monthOfBirth = changed[2] + changed[3];
       const dayOfBirth = changed[4] + changed[5];
@@ -113,7 +108,7 @@ export class ApplicationComponent implements OnInit {
 
       this.application.dateOfBirth = `${year}-${monthOfBirth}-${dayOfBirth}T00:00:00.000Z`;
     } else {
-      this.isIdValid = false;
+
       alert('Invalid ID No');
     }
   }
