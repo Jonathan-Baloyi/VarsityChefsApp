@@ -40,30 +40,6 @@ export class ApplicationComponent implements OnInit {
 
   ngOnInit() {
 
-    this.firstFormGroup = this._formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      cellNumber: ['', Validators.required && Validators.pattern(/^((\+[0-9]{2})|[0])[0-9]{2}([ -])?[0-9]{3}([ -])?[0-9]{4}$/)],
-      Telephone: ['', Validators],
-      email: ['', Validators.required && Validators.pattern(/^[a-z0-9]+([.-][_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/i)],
-      nationality: [''],
-      specifyNat: [''],
-      IdNumber: ['', Validators.required],
-      gender: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
-      passport: ['']
-
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-    this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required]
-    });
-    this.fourthFormGroup = this._formBuilder.group({
-      fourthCtrl: ['', Validators.required]
-    });
-
     this.applicantService
       .ByIdentityIdGet(localStorage.getItem('Id'))
       .subscribe(x => {
@@ -108,7 +84,7 @@ export class ApplicationComponent implements OnInit {
 
     const changed = idObject.value;
 
-    if ( idObject.validity.valid === true) {
+    if ( idObject.valid === true) {
       this.isIdValid = true;
       const yearOfBirth = changed[0] + changed[1];
       const monthOfBirth = changed[2] + changed[3];
