@@ -6,26 +6,28 @@
 
                 <div class="row">
                     <mat-form-field class="col-lg-6 col-md-12">
-                        <input matInput type="text" placeholder="Firstname" [(ngModel)]="application.firstName" name="name" #name="ngModel" required>
+                        <input matInput type="text" placeholder="Firstname" [(ngModel)]="application.firstName" name="name" #name="ngModel" maxlength="50" required>
                         <mat-error *ngIf="name.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                     <mat-form-field class="col-lg-6 col-md-12">
-                        <input matInput type="text" placeholder="Surname" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
+                        <input matInput type="text" placeholder="Surname" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" maxlength="50" required>
                         <mat-error *ngIf="surname.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                 </div>
 
                 <div class="row">
                     <mat-form-field class="col-lg-4 col-md-12">
-                        <input matInput type="text" placeholder="Cellphone" [(ngModel)]="application.cellNumber" name="cell" #cell="ngModel" required>
+                        <input matInput type="text" placeholder="Cellphone" [(ngModel)]="application.cellNumber" name="cell" #cell="ngModel" [pattern]="patterns.cell" maxlength="15" required>
                         <mat-error *ngIf="cell.hasError('required')">The field is compulsory</mat-error>
+                        <mat-error *ngIf="cell.hasError('pattern')">Cell Number is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field class="col-lg-4 col-md-12">
-                        <input matInput type="text" placeholder="Telephone" [(ngModel)]="application.telephone" name="tel" #tel="ngModel">
+                        <input matInput type="text" placeholder="Telephone" [(ngModel)]="application.telephone" name="tel" maxlength="15" #tel="ngModel">
                     </mat-form-field>
                     <mat-form-field class="col-lg-4 col-md-12">
-                        <input matInput type="text" placeholder="Email" [(ngModel)]="application.email" name="email" #email="ngModel" required>
+                        <input matInput type="text" placeholder="Email" [(ngModel)]="application.email" name="email" #email="ngModel" maxlength="50" [pattern]="patterns.email" required>
                         <mat-error *ngIf="email.hasError('required')">The field is compulsory</mat-error>
+                        <mat-error *ngIf="!email.valid && email.hasError('pattern')">Email is invalid</mat-error>
                     </mat-form-field>
                 </div>
 
@@ -39,13 +41,13 @@
                         <mat-error *ngIf="nat.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                     <mat-form-field *ngIf="!nationalityCheck" class="col-lg-10 col-md-12">
-                        <input matInput type="text" placeholder="Please Specify nationality" [(ngModel)]="application.nationality" name="specifyNat" #specifyNat="ngModel" required>
+                        <input matInput type="text" placeholder="Please Specify nationality" [(ngModel)]="application.nationality" name="specifyNat" maxlength="50" #specifyNat="ngModel" required>
                         <mat-error *ngIf="specifyNat.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                 </div>
                 <div *ngIf="nationalityCheck" class="row">
                     <mat-form-field class="col-lg-6 col-md-12">
-                        <input matInput type="text" placeholder="ID Number" [(ngModel)]="application.idNumber" name="idNo" #idNo="ngModel" (change)="pickUpChange(idNo, idNo.value)" appIsValidSouthAfricanIdNumber required>
+                        <input matInput type="text" placeholder="ID Number" [(ngModel)]="application.idNumber" name="idNo" #idNo="ngModel" maxlength="13" (change)="pickUpChange(idNo, idNo.value)" appIsValidSouthAfricanIdNumber required>
                         <mat-error *ngIf="idNo.hasError('required')">The field is compulsory</mat-error>
                         <mat-error *ngIf="idNo.hasError('southAfricanIdNumber')">The ID number is Invalid</mat-error>
                     </mat-form-field>

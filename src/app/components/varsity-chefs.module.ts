@@ -48,6 +48,7 @@ import { ApplyErrorComponent } from './apply-error/apply-error.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { IsValidSouthAfricanIdNumberDirective } from './validators/is-valid-south-african-id-number.directive';
+import { Patterns } from './validators/Patterns';
 
 @NgModule({
   imports: [
@@ -85,7 +86,8 @@ import { IsValidSouthAfricanIdNumberDirective } from './validators/is-valid-sout
     MatIconRegistry,
     MatError,
     MatChipInput,
-    MatChipRemove
+    MatChipRemove,
+    Patterns
   ],
 
   declarations: [

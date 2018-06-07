@@ -5,6 +5,7 @@ import { Application } from '../../../models';
 import { ApplicationService } from '../../../services';
 import { Alert } from 'selenium-webdriver';
 import { ApplicantService } from '../../../services/applicant.service';
+import { Patterns } from '../../validators/Patterns';
 
 @Component({
   selector: 'app-application',
@@ -28,9 +29,9 @@ export class ApplicationComponent implements OnInit {
 
   constructor(
     private router: Router,
+    public patterns: Patterns,
     private applicationService: ApplicationService,
     private applicantService: ApplicantService,
-    private _formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -108,8 +109,7 @@ export class ApplicationComponent implements OnInit {
 
       this.application.dateOfBirth = `${year}-${monthOfBirth}-${dayOfBirth}T00:00:00.000Z`;
     } else {
-
-      alert('Invalid ID No');
+      console.log('Invalid Id Number');
     }
   }
 
