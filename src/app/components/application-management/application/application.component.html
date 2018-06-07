@@ -69,7 +69,7 @@
                         <mat-error *ngIf="pass.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                     <mat-form-field class="col-lg-2 col-md-12">
-                        <mat-select placeholder="Gender" [(ngModel)]="application.gender" name="gender" #gender="ngModel">
+                        <mat-select placeholder="Gender" [(ngModel)]="application.gender" name="gender" #gender="ngModel" required>
                             <mat-option *ngFor="let gender of genders" [value]="gender.value">
                                 {{ gender.text }}
                             </mat-option>
@@ -77,7 +77,7 @@
                         <mat-error *ngIf="gender.hasError('required')">The field is compulsory</mat-error>
                     </mat-form-field>
                     <mat-form-field class="col-lg-4" lg>
-                        <input matInput [matDatepicker]="picker" placeholder="Date of Birth (MM/DD/YYYY)" [(ngModel)]="application.dateOfBirth" name="picker">
+                        <input matInput [matDatepicker]="picker" placeholder="Date of Birth (MM/DD/YYYY)" [(ngModel)]="application.dateOfBirth" name="picker" required>
                         <mat-datepicker-toggle style="color:#60cae4" title="Select Start Date" matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker [startView]="yearView ? 'year' : 'month'"></mat-datepicker>
                     </mat-form-field>
