@@ -79,21 +79,6 @@ export class ApplicationComponent implements OnInit {
     }
   }
 
-  onChangeAddress1(event) {
-    if (event.checked === true) {
-      this.address2 = false;
-      this.application.residentialAddress.resLine1 = this.application.postalAddress.postalLine1;
-      this.application.residentialAddress.resLine2 = this.application.postalAddress.postalLine2;
-      this.application.residentialAddress.resLine3 = this.application.postalAddress.postalLine3;
-    }
-  }
-
-  onChangeAddress2(event) {
-    if (event.checked === true) {
-      this.address1 = false;
-    }
-  }
-
   public pickUpChange(idObject) {
     const changed = idObject.value;
 
@@ -131,6 +116,7 @@ export class ApplicationComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     if (this.isApplicationUpdate === true) {
+      debugger;
       this.applicationService
         .ApiApplicationByIdPut({
           id: this.application.applicantId,
@@ -138,7 +124,7 @@ export class ApplicationComponent implements OnInit {
         })
         .subscribe(
           x => {
-            alert(x);
+            alert('Successfully updated');
           },
           err => {
             alert(JSON.stringify(err.error));

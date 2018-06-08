@@ -1,5 +1,5 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" autocomplete="off">
-    <mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-horizontal-stepper class="col-lg-10 m" [linear]="true" #stepper>
         <mat-step [stepControl]="form1">
             <form #form1="ngForm">
                 <ng-template matStepLabel>Personal Details</ng-template>
@@ -93,6 +93,100 @@
             <form #form2="ngForm">
                 <ng-template matStepLabel>Address Details</ng-template>
 
+                <div class="row">
+                    <div class="col-lg-5 col-md-12">
+                        <h6>
+                            <li>Do you have permant residence permit? </li>
+                        </h6>
+                    </div>
+                    <section class="col-lg-6 col-md-12" lg>
+                        <mat-checkbox labelPosition="before" name="data2" ngDefaultControl (change)="onChange1($event)" [(ngModel)]="permanantRes1">
+                            Yes
+                        </mat-checkbox>
+                        &nbsp;
+                        <mat-checkbox labelPosition="before" name="data3" ngDefaultControl (change)="onChange2($event)" [(ngModel)]="permanantRes2">
+                            No
+                        </mat-checkbox>
+                    </section>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="col-lg-12 col-md-12">
+                            <h5>Residential Address</h5>
+                        </div>
+
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Address Line 1" [(ngModel)]="application.residentialAddress.resLine1" name="res1" #res1="ngModel" required>
+                            <mat-error *ngIf="res1.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Address Line 2" [(ngModel)]="application.residentialAddress.resLine2" name="res2" #res2="ngModel">
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Address Line 3" [(ngModel)]="application.residentialAddress.resLine3" name="res3" #res3="ngModel">
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Surbub" [(ngModel)]="application.residentialAddress.resSurburb" name="resSub" #resSub="ngModel" required>
+                            <mat-error *ngIf="resSub.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="City" [(ngModel)]="application.residentialAddress.resCity" name="resCity" #resCity="ngModel" required>
+                            <mat-error *ngIf="resCity.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Country" [(ngModel)]="application.residentialAddress.resCountry" name="resCountry" #resCountry="ngModel" required>
+                            <mat-error *ngIf="resCountry.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Province" [(ngModel)]="application.residentialAddress.resProvince" name="resProvince" #resProvince="ngModel" required>
+                            <mat-error *ngIf="resProvince.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Code" [(ngModel)]="application.residentialAddress.resCode" name="resCode" #resCode="ngModel" required>
+                            <mat-error *ngIf="resCode.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="col-lg-12 col-md-12">
+                            <h5>Postal Address</h5>
+                        </div>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Address Line 1" [(ngModel)]="application.postalAddress.postalLine1" name="pos1" #pos1="ngModel" required>
+                            <mat-error *ngIf="pos1.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Address Line 2" [(ngModel)]="application.postalAddress.postalLine2" name="pos2" #pos2="ngModel">
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Address Line 3" [(ngModel)]="application.postalAddress.postalLine3" name="pos3" #pos3="ngModel">
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Surbub" [(ngModel)]="application.postalAddress.postalSurburb" name="posSub" #posSub="ngModel" required>
+                            <mat-error *ngIf="posSub.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="City" [(ngModel)]="application.postalAddress.postalCity" name="posCity" #posCity="ngModel" required>
+                            <mat-error *ngIf="posCity.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Country" [(ngModel)]="application.postalAddress.postalCountry" name="posCountry" #posCountry="ngModel" required>
+                            <mat-error *ngIf="posCountry.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Province" [(ngModel)]="application.postalAddress.postalProvince" name="posProvince" #posProvince="ngModel" required>
+                            <mat-error *ngIf="posProvince.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-12 col-md-12">
+                            <input matInput type="text" placeholder="Code" [(ngModel)]="application.postalAddress.postalCode" name="posCode" #posCode="ngModel" required>
+                            <mat-error *ngIf="posCode.hasError('required')">The field is compulsory</mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                </div>
+
                 <div>
                     <button mat-raised-button color="warn" matStepperPrevious>Back</button>
                     <button mat-raised-button matStepperNext color="primary" [disabled]="!form2.form.valid">Next</button>
@@ -129,224 +223,3 @@
         </mat-step>
     </mat-horizontal-stepper>
 </form>
-
-<!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)" autocomplete="off">
-    <div class="container">
-        <div class="row">
-            <mat-card class="col-xl-12 col-xl-offset-12 m">
-                <mat-card-title>
-                    <h4>Application form</h4>
-                </mat-card-title>
-                <hr />
-
-                <mat-horizontal-stepper [linear]="isLinear" #stepper>
-                    <mat-step [stepControl]="firstFormGroup">
-                        <form [formGroup]="firstFormGroup">
-                            <ng-template matStepLabel>Personal details</ng-template>
-                        </form>
-                    </mat-step>
-                </mat-horizontal-stepper>
-                <mat-card-content>
-
-
-                    <div class="row">
-                        <mat-form-field class="col-lg-6 col-md-12">
-                            <input matInput type="text" placeholder="Firstname" [(ngModel)]="application.firstName" name="name" #name="ngModel" required>
-                            <mat-error *ngIf="name.hasError('required')">This is a required field</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-lg-6 col-md-12">
-                            <input matInput type="text" placeholder="Surname" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                            <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div class="row">
-                        <mat-form-field class="col-lg-4 col-md-12">
-                            <input matInput type="text" placeholder="Cellphone" [(ngModel)]="application.cellNumber" name="cell" #cell="ngModel" required>
-                            <mat-error *ngIf="cell.hasError('required')">This is a required field</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-lg-4 col-md-12">
-                            <input matInput type="text" placeholder="Telephone" [(ngModel)]="application.telephone" name="tel" #tel="ngModel">
-                        </mat-form-field>
-                        <mat-form-field class="col-lg-4 col-md-12">
-                            <input matInput type="text" placeholder="Email" [(ngModel)]="application.email" name="email" #email="ngModel" required>
-                            <mat-error *ngIf="email.hasError('required')">This is a required field</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="row">
-                        <mat-form-field class="col-lg-2 col-md-12">
-                            <mat-select placeholder="Nationality" [(ngModel)]="nationalityCheck" name="nat" #nat="ngModel">
-                                <mat-option *ngFor="let nat of nationality" [value]="nat.value">
-                                    {{ nat.text }}
-                                </mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="nat.hasError('required')">This is a required field</mat-error>
-                        </mat-form-field>
-                        <mat-form-field *ngIf="!nationalityCheck" class="col-lg-10 col-md-12">
-                            <input matInput type="text" placeholder="Please Specify nationality" [(ngModel)]="application.cellNumber" name="cell" #cell="ngModel" required>
-                            <mat-error *ngIf="cell.hasError('required')">This is a required field</mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div *ngIf="nationalityCheck" class="row">
-                        <mat-form-field class="col-lg-6 col-md-12">
-                            <input matInput type="text" placeholder="ID Number" [(ngModel)]="application.cellNumber" name="idNo" #idNo="ngModel" (change)="pickUpChange(idNo, idNo.value)" required>
-                            <mat-error *ngIf="idNo.hasError('required')">This is a required field</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-lg-2 col-md-12">
-                            <mat-select placeholder="Gender" [(ngModel)]="application.gender" name="gender" #gender="ngModel">
-                                <mat-option *ngFor="let gender of genders" [value]="gender.value">
-                                    {{ gender.text }}
-                                </mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="gender.hasError('required')">This is a required field</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-lg-4" lg>
-                            <input matInput [matDatepicker]="picker" placeholder="Date of Birth (MM/DD/YYYY)" [(ngModel)]="application.dateOfBirth" name="picker">
-                            <mat-datepicker-toggle style="color:#60cae4" title="Select Start Date" matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker [startView]="yearView ? 'year' : 'month'"></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                    <div *ngIf="!nationalityCheck" class="row">
-                        <mat-form-field class="col-lg-6 col-md-12">
-                            <input matInput type="text" placeholder="Passport Number" [(ngModel)]="application.cellNumber" name="pass" #pass="ngModel" required>
-                            <mat-error *ngIf="pass.hasError('required')">This is a required field</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-lg-2 col-md-12">
-                            <mat-select placeholder="Gender" [(ngModel)]="application.gender" name="gender" #gender="ngModel">
-                                <mat-option *ngFor="let gender of genders" [value]="gender.value">
-                                    {{ gender.text }}
-                                </mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="gender.hasError('required')">This is a required field</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-lg-4" lg>
-                            <input matInput [matDatepicker]="picker" placeholder="Date of Birth (MM/DD/YYYY)" [(ngModel)]="application.dateOfBirth" name="picker">
-                            <mat-datepicker-toggle style="color:#60cae4" title="Select Start Date" matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker [startView]="yearView ? 'year' : 'month'"></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                    <hr />
-                    <div class="row">
-                        <div class="col-lg-4 col-md-12">
-                            <h6>Do you have permant residence permit? </h6>
-                        </div>
-                        <section class="col-lg-6 col-md-12" lg>
-                            <mat-checkbox labelPosition="before" name="data2" ngDefaultControl (change)="onChange1($event)" [(ngModel)]="permanantRes1">
-                                Yes
-                            </mat-checkbox>
-                            &nbsp;
-                            <mat-checkbox labelPosition="before" name="data3" ngDefaultControl (change)="onChange2($event)" [(ngModel)]="permanantRes2">
-                                No
-                            </mat-checkbox>
-                        </section>
-                    </div>
-                    <hr />
-                    <div class="row">
-                        <div class="col-lg-4 col-md-12">
-                            <h6>Is your residential address the same as your postal address? </h6>
-                        </div>
-                        <section class="col-lg-6 col-md-12" lg>
-                            <mat-checkbox labelPosition="before" name="data2" ngDefaultControl (change)="onChangeAddress1($event)" [(ngModel)]="address1">
-                                Yes
-                            </mat-checkbox>
-                            &nbsp;
-                            <mat-checkbox labelPosition="before" name="data3" ngDefaultControl (change)="onChangeAddress2($event)" [(ngModel)]="address2">
-                                No
-                            </mat-checkbox>
-                        </section>
-                    </div>
-                    <hr />
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="col-lg-12 col-md-12">
-                                <h5>Residential Address</h5>
-                            </div>
-
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Address Line 1" [(ngModel)]="application.residentialAddress.resLine1" name="name" #name="ngModel" required>
-                                <mat-error *ngIf="name.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Address Line 2" [(ngModel)]="application.residentialAddress.resLine2" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Address Line 3" [(ngModel)]="application.residentialAddress.resLine3" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Surbub" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="City" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Country" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Province" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Code" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="col-lg-12 col-md-12">
-                                <h5>Postal Address</h5>
-                            </div>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Address Line 1" [(ngModel)]="application.postalAddress.postalLine1" name="name" #name="ngModel" required>
-                                <mat-error *ngIf="name.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Address Line 2" [(ngModel)]="application.postalAddress.postalLine2" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Address Line 3" [(ngModel)]="application.postalAddress.postalLine3" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Surbub" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="City" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Country" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Province" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-lg-12 col-md-12">
-                                <input matInput type="text" placeholder="Code" [(ngModel)]="application.lastName" name="surname" #surname="ngModel" required>
-                                <mat-error *ngIf="surname.hasError('required')">This is a required field</mat-error>
-                            </mat-form-field>
-
-                        </div>
-
-                    </div>
-
-                </mat-card-content>
-                <mat-card-actions class="action">
-                    <div class="d-flex justify-content-end">
-                        <button mat-raised-button type="submit" color="primary" [disabled]="!f.form.valid">Submit</button>
-                        <button mat-raised-button (click)="backToSubjects()" color="warn">Cancel</button>
-                    </div>
-                </mat-card-actions>
-
-            </mat-card>
-        </div>
-    </div>
-</form> -->
