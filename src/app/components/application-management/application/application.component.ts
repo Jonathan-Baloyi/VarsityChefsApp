@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {
+  NgForm,
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
 import { Application } from '../../../models';
 import { ApplicationService } from '../../../services';
 import { Alert } from 'selenium-webdriver';
@@ -14,7 +20,7 @@ import * as moment from 'moment/moment';
   styleUrls: ['./application.component.css']
 })
 export class ApplicationComponent implements OnInit {
-  application: Application = {postalAddress: {}, residentialAddress: {}};
+  application: Application = { postalAddress: {}, residentialAddress: {} };
   genders = [{ value: true, text: 'Male' }, { value: false, text: 'Female' }];
   nationality = [
     { value: true, text: 'South African' },
@@ -26,37 +32,36 @@ export class ApplicationComponent implements OnInit {
 
   address1 = false;
   address2 = false;
+  isApplicationUpdate = false;
 
   constructor(
     private router: Router,
     public patterns: Patterns,
     private applicationService: ApplicationService,
-    private applicantService: ApplicantService,
+    private applicantService: ApplicantService
   ) {}
 
   ngOnInit() {
-
-    debugger;
     this.applicantService
       .ByIdentityIdGet(localStorage.getItem('Id'))
       .subscribe(x => {
-        debugger;
-         this.application.applicantId = x.id;
+        this.application.applicantId = x.id;
         this.application.firstName = x.firstName;
         this.application.lastName = x.lastName;
         this.application.cellNumber = x.phoneNumber;
         this.application.email = x.email;
 
-        // Comment out the code when you get home
-        // if (x.id > 0) {
-        //   this.applicationService
-        //  .ApiApplicationByEmailGet(x.email)
-        //  .subscribe(appl => {
-        //     this.application = appl;
-        //   });
-        // }
+        this.applicationService
+          .ApiApplicationByEmailGet(x.email)
+          .subscribe(appl => {
 
-
+            if (appl) {
+              this.isApplicationUpdate = true;
+              this.application = appl;
+            }
+          }, err => {
+            this.isApplicationUpdate = false;
+          });
       });
   }
 
@@ -80,7 +85,6 @@ export class ApplicationComponent implements OnInit {
       this.application.residentialAddress.resLine1 = this.application.postalAddress.postalLine1;
       this.application.residentialAddress.resLine2 = this.application.postalAddress.postalLine2;
       this.application.residentialAddress.resLine3 = this.application.postalAddress.postalLine3;
-
     }
   }
 
@@ -91,11 +95,9 @@ export class ApplicationComponent implements OnInit {
   }
 
   public pickUpChange(idObject) {
-
     const changed = idObject.value;
 
-    if ( idObject.valid === true) {
-
+    if (idObject.valid === true) {
       const yearOfBirth = changed[0] + changed[1];
       const monthOfBirth = changed[2] + changed[3];
       const dayOfBirth = changed[4] + changed[5];
@@ -128,19 +130,39 @@ export class ApplicationComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    if (this.nationalityCheck === true) {
-      this.application.nationality = 'South African';
-    }
-    this.application.dateOfBirth = moment(this.application.dateOfBirth).format('YYYY-MM-DDT00:00:00.000Z');
+    if (this.isApplicationUpdate === true) {
+      this.applicationService
+        .ApiApplicationByIdPut({
+          id: this.application.applicantId,
+          application: this.application
+        })
+        .subscribe(
+          x => {
+            alert(x);
+          },
+          err => {
+            alert(JSON.stringify(err.error));
+          }
+        );
+    } else {
 
-    this.applicationService.ApiApplicationPost(this.application).subscribe(
-      x => {
-        alert(x);
-      },
-      err => {
-        alert(err);
+      if (this.nationalityCheck === true) {
+        this.application.nationality = 'South African';
       }
-    );
+
+      this.application.dateOfBirth = moment(
+        this.application.dateOfBirth
+      ).format('YYYY-MM-DD[T]HH:mm:00.000[Z]');
+
+      this.applicationService.ApiApplicationPost(this.application).subscribe(
+        x => {
+          alert(x);
+        },
+        err => {
+          alert(JSON.stringify(err.error));
+        }
+      );
+    }
   }
 
   backToSubjects() {
