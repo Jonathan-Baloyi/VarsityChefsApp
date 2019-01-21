@@ -20,7 +20,8 @@ export class AppComponent implements OnInit {
   show;
 
   constructor(private authServ: AuthenticationService,
-              private router: Router) {
+              private router: Router
+            ) {
                 this.show = this.authServ.isLoggedIn;
 
   }
